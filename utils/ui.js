@@ -1,5 +1,5 @@
-import { breakpoints, levels } from "./configs/config.js";
-import { container, device, level, onLevelSelect } from "./index.js";
+import { breakpoints, levels } from "../configs/config.js";
+import { container, device, level, onLevelSelect } from "../index.js";
 
 /** Main Menu **/
 export function generateMenu() {

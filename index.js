@@ -1,5 +1,5 @@
 import { levels, setCurrentDevice } from "./configs/config.js";
-import { generateBoard, generateMenu, removeMenu } from "./ui.js";
+import { generateBoard, generateMenu, removeMenu } from "./utils/ui.js";
 
 export let device = setCurrentDevice();
 
