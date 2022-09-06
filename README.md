@@ -1,1 +1,1 @@
-# js-games
+# memory-game
