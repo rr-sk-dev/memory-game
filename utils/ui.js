@@ -49,6 +49,17 @@ export function generateBoard() {
 
     cardElem.addEventListener("click", flipCard);
 
+    const frontElem = document.createElement("img");
+    frontElem.src = "../images/cover.jpg";
+    frontElem.classList.add("front");
+
+    const backElem = document.createElement("img");
+    backElem.src = "../images/orange.jpg";
+    backElem.classList.add("back");
+
+    cardElem.appendChild(frontElem);
+    cardElem.appendChild(backElem);
+
     container.appendChild(cardElem);
   }
 }
