@@ -19,6 +19,10 @@ export function onLevelSelect(ev) {
   generateBoard();
 }
 
+export function flipCard() {
+  this.classList.toggle("flip");
+}
+
 function start() {
   // Generate the menu
   generateMenu();

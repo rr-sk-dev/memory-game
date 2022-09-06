@@ -21,6 +21,7 @@ body {
     justify-content: space-between;
     flex-wrap: wrap;
     margin: 20px;
+    perspective: 1000px;
 }
 
 .menu {
@@ -49,4 +50,18 @@ button:active {
 
 .card {
     background-color: rgb(125, 202, 223);
+    transform: scale(1);
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+}
+
+.card:active {
+    transform: scale(0.7);
+    transition: transform 0.2s;
+}
+
+.card.flip {
+    transform: rotateY(180deg);
+    /* ! remove "background-color" after adding images */
+    background-color: aquamarine;
 }

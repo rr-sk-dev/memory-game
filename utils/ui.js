@@ -1,5 +1,5 @@
 import { breakpoints, levels } from "../configs/config.js";
-import { container, device, level, onLevelSelect } from "../index.js";
+import { container, device, flipCard, level, onLevelSelect } from "../index.js";
 
 /** Main Menu **/
 export function generateMenu() {
@@ -46,6 +46,8 @@ export function generateBoard() {
     cardElem.style.width = breakpoints[device].width;
     cardElem.style.height = breakpoints[device].height;
     cardElem.style["margin-bottom"] = breakpoints[device].margin;
+
+    cardElem.addEventListener("click", flipCard);
 
     container.appendChild(cardElem);
   }
