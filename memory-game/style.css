@@ -12,6 +12,7 @@ body {
     flex-direction: column;
     height: 100vh;
     overflow-x: hidden;
+    background-color: azure;
 }
 
 #container {
@@ -20,7 +21,6 @@ body {
     justify-content: space-between;
     flex-wrap: wrap;
     margin: 20px;
-    background-color: antiquewhite;
 }
 
 .menu {
@@ -37,7 +37,7 @@ button {
     margin: 5px;
     border: 0;
     border-radius: 10px;
-    background-color: wheat;
+    background-color: rgb(125, 202, 223);
     font-size: 20px;
     letter-spacing: 1px;
 }
@@ -48,5 +48,5 @@ button:active {
 }
 
 .card {
-    background-color: cornflowerblue;
+    background-color: rgb(125, 202, 223);
 }
