@@ -55,12 +55,12 @@ export function generateBoard() {
     const frontElem = document.createElement("img");
     const image = getRandomElementFromList(images);
     const index = images.indexOf(image);
-    frontElem.src = `../images/${image}`;
+    frontElem.src = `./images/${image}`;
     images.splice(index, 1);
     frontElem.classList.add("front");
 
     const backElem = document.createElement("img");
-    backElem.src = "../images/cover.jpg";
+    backElem.src = "./images/cover.jpg";
     backElem.classList.add("back");
 
     cardElem.appendChild(frontElem);
