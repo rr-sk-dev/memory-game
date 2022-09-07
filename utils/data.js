@@ -1,50 +1,46 @@
 const images = [
-  { name: "apple.jpg", count: 0 },
-  { name: "avocato.jpg", count: 0 },
-  { name: "banana.jpg", count: 0 },
-  { name: "blueberry.jpg", count: 0 },
-  { name: "cherry.jpg", count: 0 },
-  { name: "dragonfruit.jpg", count: 0 },
-  { name: "grapes.jpg", count: 0 },
-  { name: "lemon.jpg", count: 0 },
-  { name: "lime.jpg", count: 0 },
-  { name: "orange.jpg", count: 0 },
-  { name: "papaya.jpg", count: 0 },
-  { name: "peach.jpg", count: 0 },
-  { name: "pear.jpg", count: 0 },
-  { name: "pineapple.jpg", count: 0 },
-  { name: "pomegranate.jpg", count: 0 },
-  { name: "raspberry.jpg", count: 0 },
-  { name: "strawberry.jpg", count: 0 },
-  { name: "watermelon.jpg", count: 0 },
+  { imgSrc: "./images/apple.jpg", name: "apple" },
+  { imgSrc: "./images/avocato.jpg", name: "avocato" },
+  { imgSrc: "./images/banana.jpg", name: "banana" },
+  { imgSrc: "./images/blueberry.jpg", name: "blueberry" },
+  { imgSrc: "./images/cherry.jpg", name: "cherry" },
+  { imgSrc: "./images/dragonfruit.jpg", name: "dragonfruit" },
+  { imgSrc: "./images/grapes.jpg", name: "grapes" },
+  { imgSrc: "./images/lemon.jpg", name: "lemon" },
+  { imgSrc: "./images/lime.jpg", name: "lime" },
+  { imgSrc: "./images/orange.jpg", name: "orange" },
+  { imgSrc: "./images/papaya.jpg", name: "papaya" },
+  { imgSrc: "./images/peach.jpg", name: "peach" },
+  { imgSrc: "./images/pear.jpg", name: "pear" },
+  { imgSrc: "./images/pineapple.jpg", name: "pineapple" },
+  { imgSrc: "./images/pomegranate.jpg", name: "pomegranate" },
+  { imgSrc: "./images/raspberry.jpg", name: "raspberry" },
+  { imgSrc: "./images/strawberry.jpg", name: "strawberry" },
+  { imgSrc: "./images/watermelon.jpg", name: "watermelon" },
 ];
 
-export function getRandomElementFromList(list) {
-  if (!Array.isArray(list) || !list?.length) {
-    throw "Invalid List";
-  }
-
-  return list[Math.floor(Math.random() * list.length)];
+function randomInteger(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-export function getRandomImage() {
-  const image = getRandomElementFromList(images);
+export function randomize(size, src = images) {
+  const idxs = [];
+  const data = [];
 
-  image.count += 1;
+  while (data.length < size) {
+    const idx = randomInteger(0, src.length - 1);
 
-  if (image.count > 1) {
-    return getRandomImage();
+    if (idxs.includes(idx)) continue;
+
+    idxs.push(idx);
+    data.push(src[idx]);
   }
 
-  return image.name;
+  return data;
 }
 
-export function getRandomImagesList(size) {
-  const list = [];
+export function getData(size) {
+  let data = randomize(size);
 
-  for (let i = 0; i < size; i++) {
-    list.push(getRandomImage());
-  }
-
-  return [...list, ...list];
+  return [...data, ...randomize(size, data)];
 }

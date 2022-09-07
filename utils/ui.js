@@ -1,6 +1,6 @@
 import { breakpoints, levels } from "../configs/config.js";
 import { container, device, flipCard, level, onLevelSelect } from "../index.js";
-import { getRandomElementFromList, getRandomImagesList } from "./data.js";
+import { getData } from "./data.js";
 
 /** Main Menu **/
 export function generateMenu() {
@@ -32,6 +32,21 @@ export function removeMenu() {
   menuElem.style.display = "none";
 }
 
+export function removeBoard() {
+  const cards = document.querySelectorAll(".card");
+
+  cards.forEach((card) => {
+    let child = card.lastElementChild;
+
+    while (child) {
+      card.removeChild(child);
+      child = card.lastElementChild;
+    }
+
+    card.remove();
+  });
+}
+
 /** Cards Board **/
 export function generateBoard() {
   // Set container's width
@@ -39,33 +54,36 @@ export function generateBoard() {
     breakpoints[device].margin
   } * 2) * ${level.schema.split("x")[0]})`;
 
-  const images = getRandomImagesList(level.numberOfCards / 2);
+  const data = getData(level.numberOfCards / 2);
 
-  // Generate cards
-  for (let i = 0; i < level.numberOfCards; i++) {
+  data.forEach((item) => {
+    // Create HTML Elements
     const cardElem = document.createElement("div");
-    cardElem.classList.add("card");
+    const frontElem = document.createElement("img");
+    const backElem = document.createElement("div");
 
+    // Add css classes
+    cardElem.classList.add("card");
+    frontElem.classList.add("front");
+    backElem.classList.add("back");
+
+    // Apply csss styles based on the current device
     cardElem.style.width = breakpoints[device].width;
     cardElem.style.height = breakpoints[device].height;
     cardElem.style["margin-bottom"] = breakpoints[device].margin;
 
+    // Add event listener for card flip
     cardElem.addEventListener("click", flipCard);
 
-    const frontElem = document.createElement("img");
-    const image = getRandomElementFromList(images);
-    const index = images.indexOf(image);
-    frontElem.src = `./images/${image}`;
-    images.splice(index, 1);
-    frontElem.classList.add("front");
+    // Attach info to the cards
+    cardElem.setAttribute("name", item.name);
+    frontElem.src = item.imgSrc;
 
-    const backElem = document.createElement("img");
-    backElem.src = "./images/cover.jpg";
-    backElem.classList.add("back");
-
+    // Append front and back to the card
     cardElem.appendChild(frontElem);
     cardElem.appendChild(backElem);
 
+    // Append the card to the container
     container.appendChild(cardElem);
-  }
+  });
 }

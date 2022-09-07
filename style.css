@@ -69,4 +69,5 @@ button:active {
 
 .back {
     backface-visibility: hidden;
+    background-color: rgb(144, 208, 225);
 }
