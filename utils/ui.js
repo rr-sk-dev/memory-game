@@ -1,5 +1,6 @@
 import { breakpoints, levels } from "../configs/config.js";
 import { container, device, flipCard, level, onLevelSelect } from "../index.js";
+import { getRandomElementFromList, getRandomImagesList } from "./data.js";
 
 /** Main Menu **/
 export function generateMenu() {
@@ -38,6 +39,8 @@ export function generateBoard() {
     breakpoints[device].margin
   } * 2) * ${level.schema.split("x")[0]})`;
 
+  const images = getRandomImagesList(level.numberOfCards / 2);
+
   // Generate cards
   for (let i = 0; i < level.numberOfCards; i++) {
     const cardElem = document.createElement("div");
@@ -50,11 +53,14 @@ export function generateBoard() {
     cardElem.addEventListener("click", flipCard);
 
     const frontElem = document.createElement("img");
-    frontElem.src = "../images/cover.jpg";
+    const image = getRandomElementFromList(images);
+    const index = images.indexOf(image);
+    frontElem.src = `../images/${image}`;
+    images.splice(index, 1);
     frontElem.classList.add("front");
 
     const backElem = document.createElement("img");
-    backElem.src = "../images/orange.jpg";
+    backElem.src = "../images/cover.jpg";
     backElem.classList.add("back");
 
     cardElem.appendChild(frontElem);
